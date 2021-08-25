@@ -1,7 +1,7 @@
 package com.ostapchuk.trainer.multiplier.controller;
 
 import com.ostapchuk.trainer.multiplier.model.Expression;
-import com.ostapchuk.trainer.multiplier.service.MultiplierService;
+import com.ostapchuk.trainer.multiplier.service.ExpressionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ExpressionController {
 
-    private final MultiplierService multiplierService;
+    private final ExpressionService expressionService;
 
     @GetMapping("/easy")
     public Expression generateEasyExpression() {
-        return multiplierService.generateEasyExpression();
+        return expressionService.generateEasyExpression();
     }
 
     @GetMapping("/medium")
     public Expression generateMediumExpression() {
-        return multiplierService.generateMediumExpression();
+        return expressionService.generateMediumExpression();
     }
 
     @GetMapping("/hard")
     public Expression generateHardExpression() {
-        return multiplierService.generateHardExpression();
+        return expressionService.generateHardExpression();
     }
 
     @PostMapping()
     public boolean checkAttempt(@RequestBody Expression expression) {
-        boolean result = multiplierService.checkAttempt(expression);
+        boolean result = expressionService.checkAttempt(expression);
         if (!result) {
             log.info(expression.getFirstParameter() + " * " + expression.getSecondParameter());
         }
