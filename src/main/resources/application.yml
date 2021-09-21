@@ -1,0 +1,17 @@
+server.port: 8081
+
+keycloak:
+  realm: multiplier
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: external
+  resource: backend
+  credentials.secret:
+  use-resource-role-mappings: true
+  bearer-only: true
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
