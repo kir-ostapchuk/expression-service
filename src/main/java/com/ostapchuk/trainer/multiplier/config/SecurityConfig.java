@@ -1,9 +1,5 @@
 package com.ostapchuk.trainer.multiplier.config;
 
-//public class SecurityConfig {
-//}
-
-
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
@@ -43,7 +39,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         http.cors();
         http.authorizeRequests()
                 .antMatchers("/api/v1/easy").hasRole("ADMIN")
-                .antMatchers("/api/v1/medium").authenticated();
+                .antMatchers("/api/v1/medium").hasRole("USER")
+                .antMatchers("/api/v1/hard").authenticated();
         http.csrf().disable();
 
     }
